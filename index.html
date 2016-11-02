@@ -5,8 +5,10 @@
 	<title>Hallo angular</title>
 </head>
 <body>
+	<h1>My first Angular App</h1>
 	<div ng-controller="MyFirstController">
-		Hallo Welt.
+		<input type="text" ng-model="name" name="">
+		My Name is: {{name}}
 	</div>
 
 	<script src="angular.min.js"></script>
