@@ -4,9 +4,10 @@
 
 	angular
 		.module('LunchCheck', [])
-		.controller('LunchCheckController', LunchCheckController);
+		.controller('LunchCheckController', LunchCheckController)
+		.filter('message', MessageFilter);
 
-	LunchCheckController.$inject = ['$scope'];
+	LunchCheckController.$inject = ['$scope', 'messageFilter'];
 	function LunchCheckController ($scope) {
 		$scope.itemString = '';
 		$scope.message = '';
@@ -25,7 +26,7 @@
 				$scope.message = 'Too much!';
 			}
 
-			return ($scope.message);
+			return (messageFilter($scope.message));
 		}
 	};
 
@@ -35,6 +36,12 @@
 			return ([]);
 		} else {
 			return (itemString.split(','));
+		}
+	}
+
+	function MessageFilter () {
+		return function (msg, target, replace) {
+			return (msg.replace(target, replace));
 		}
 	}
 
